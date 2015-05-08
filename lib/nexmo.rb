@@ -143,7 +143,7 @@ module Nexmo
     def post(path, params)
       uri = URI.join("https://#{@host}", path)
 
-      post_request = Net::HTTP::Post.new(uri.request_uri)
+      post_request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/x-www-form-urlencoded'})
       post_request.form_data = params.merge(:api_key => @key, :api_secret => @secret)
 
       http = Net::HTTP.new(uri.host, Net::HTTP.https_default_port)
